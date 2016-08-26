@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_row_selector"
+    android:padding="8dp" >
+    <!-- Thumbnail Image -->
+    <ImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="8dp"
+        android:visibility="gone" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+
+        android:id="@+id/tvId"
+        android:visibility="gone" />
+    <!-- Movie Title -->
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/thumbnail"
+        android:textSize="@dimen/genre"
+        android:text="Producto"
+        android:textStyle="bold"
+        android:layout_toRightOf="@+id/thumbnail" />
+
+    <!-- Rating -->
+    <TextView
+        android:id="@+id/tvCategoría"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvName"
+        android:layout_marginTop="1dip"
+        android:textStyle="bold"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:textSize="@dimen/rating" />
+
+    <TextView
+        android:id="@+id/tvPrecio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvCategoría"
+        android:textStyle="bold"
+        android:text="PRECIO"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:textSize="@dimen/rating" />
+
+    <TextView
+        android:id="@+id/tvPrecioChecked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPrecio"
+        android:textStyle="bold"
+        android:text="PRECIO "
+        android:visibility="invisible"
+        android:background="@color/color_buttom_verde"
+        android:textColor="@color/color_dt_white"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="4dp"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:textSize="@dimen/rating" />
+
+    <Button
+        android:id="@+id/bt_do"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:text="CAMBIAR PRECIO"
+        style="@style/BottonBaseMini"
+        android:drawablePadding="1dp"
+        android:layout_below="@+id/tvPrecioChecked"
+        android:layout_toRightOf="@+id/thumbnail"
+
+        android:focusable="false" />
+    <!-- Release Year -->
+
+    <ImageView
+        android:id="@+id/imgStatus"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" PRECIO VISIBLE"
+        android:textStyle="bold"
+        android:enabled="false"
+        android:id="@+id/ckPrecioVisible"
+        android:layout_alignBaseline="@+id/tvPrecio"
+        android:layout_alignBottom="@+id/tvPrecio"
+        android:layout_toRightOf="@+id/bt_do"
+        android:layout_toEndOf="@+id/bt_do" />
+
+</RelativeLayout>
