@@ -112,18 +112,6 @@
 
 
         <activity
-            android:name="dataservicios.com.ttauditalicorp.AditoriaAlicorp.PresenciaProducto"
-            android:screenOrientation="portrait"
-            android:label="Presencia de Producto"
-            android:theme="@style/AppThemeAdminPanel"
-            >
-            <intent-filter>
-                <action android:name="dataservicios.com.ttauditalicorp.PRESENCIAPRODUCTO" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
             android:name="dataservicios.com.ttauditalicorp.AditoriaAlicorp.PresenciaMaterial"
             android:screenOrientation="portrait"
             android:label="Presencia de Material Publicitario"
@@ -172,18 +160,6 @@
         </activity>
 
         <activity
-            android:name="dataservicios.com.ttauditalicorp.AditoriaAlicorp.Categorias"
-            android:screenOrientation="portrait"
-            android:label="Categorias"
-            android:theme="@style/AppThemeAdminPanel"
-            >
-            <intent-filter>
-                <action android:name="dataservicios.com.ttauditalicorp.CATEGORIAS" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
             android:name="dataservicios.com.ttauditalicorp.AditoriaAlicorp.CategoriasSOD"
             android:screenOrientation="portrait"
             android:label="Categorias"
@@ -191,18 +167,6 @@
             >
             <intent-filter>
                 <action android:name="dataservicios.com.ttauditalicorp.CATEGORIASSOD" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="dataservicios.com.ttauditalicorp.AditoriaAlicorp.Precio"
-            android:screenOrientation="portrait"
-            android:label="Precio"
-            android:theme="@style/AppThemeAdminPanel"
-            >
-            <intent-filter>
-                <action android:name="dataservicios.com.ttauditalicorp.PRECIO" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -245,27 +209,6 @@
                 <action android:name="dataservicios.com.ttauditalicorp.STOREOPENCLOSE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-
-        <activity
-            android:name="dataservicios.com.ttauditalicorp.AditoriaAlicorp.TipoDex"
-            android:screenOrientation="portrait"
-            android:label="Precio"
-            android:theme="@style/AppThemeAdminPanel"
-            >
-            <intent-filter>
-                <action android:name="dataservicios.com.ttauditalicorp.TIPODEX" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="dataservicios.com.ttauditalicorp.SearchProduct"
-            android:screenOrientation="portrait"
-            android:label="Search"
-            android:theme="@style/AppThemeAdminPanel"
-            >
-
         </activity>
 
         <activity
@@ -322,13 +265,13 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <!-- Key api Google Mode RELEASE-->
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBhzYlUq35NTpdxrkZzmxI3ffSw6v4DZ4Q"/>
-        <!--Key api Google Mode DEBUG-->
         <!--<meta-data-->
-        <!--android:name="com.google.android.maps.v2.API_KEY"-->
-        <!--android:value="AIzaSyAnYybk5WcVCIxWXtVUvvoXvAum6vyJwsU"/>-->
+            <!--android:name="com.google.android.maps.v2.API_KEY"-->
+            <!--android:value="AIzaSyBhzYlUq35NTpdxrkZzmxI3ffSw6v4DZ4Q"/>-->
+        <!--Key api Google Mode DEBUG-->
+        <meta-data
+        android:name="com.google.android.maps.v2.API_KEY"
+        android:value="AIzaSyAnYybk5WcVCIxWXtVUvvoXvAum6vyJwsU"/>
 
         <service android:name="dataservicios.com.ttauditalicorp.Services.UploadService" android:label="@string/app_name">
         </service>

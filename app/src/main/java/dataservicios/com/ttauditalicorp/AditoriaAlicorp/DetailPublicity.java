@@ -106,16 +106,7 @@ public class DetailPublicity extends Activity {
 
         thumbNail.setImageUrl(GlobalConstant.dominio + "/media/images/alicorp/publicities/" + publicity.getImage(), imageLoader);
 
-//        sw_layout.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked) {
-//                    is_layout = 1;
-//                } else {
-//                    is_layout = 0;
-//                }
-//            }
-//        });
+
 
         sw_visible.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

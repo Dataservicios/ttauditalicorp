@@ -28,7 +28,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
-import dataservicios.com.ttauditalicorp.AditoriaAlicorp.Categorias;
 import dataservicios.com.ttauditalicorp.AditoriaAlicorp.CategoriasSOD;
 import dataservicios.com.ttauditalicorp.AditoriaAlicorp.ClientePerfecto;
 import dataservicios.com.ttauditalicorp.AditoriaAlicorp.PresenciaMaterial;

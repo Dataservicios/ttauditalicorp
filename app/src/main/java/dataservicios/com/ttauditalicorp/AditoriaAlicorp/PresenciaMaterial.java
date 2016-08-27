@@ -23,7 +23,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import dataservicios.com.ttauditalicorp.Model.Audit;
 import dataservicios.com.ttauditalicorp.Model.PresencePublicity;
-import dataservicios.com.ttauditalicorp.Model.Product;
 import dataservicios.com.ttauditalicorp.Model.Publicity;
 import dataservicios.com.ttauditalicorp.R;
 import dataservicios.com.ttauditalicorp.SQLite.DatabaseHelper;
@@ -33,7 +32,6 @@ import dataservicios.com.ttauditalicorp.util.GlobalConstant;
 import dataservicios.com.ttauditalicorp.util.JSONParserX;
 import dataservicios.com.ttauditalicorp.util.SessionManager;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

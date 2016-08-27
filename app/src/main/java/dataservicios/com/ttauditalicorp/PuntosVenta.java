@@ -15,7 +15,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -23,7 +22,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 
 import dataservicios.com.ttauditalicorp.AditoriaAlicorp.StoreOpenClose;
 import dataservicios.com.ttauditalicorp.Model.Pdv;
-import dataservicios.com.ttauditalicorp.Model.Product;
 import dataservicios.com.ttauditalicorp.Model.Publicity;
 import dataservicios.com.ttauditalicorp.Model.SODVentanas;
 import dataservicios.com.ttauditalicorp.SQLite.DatabaseHelper;
@@ -46,7 +44,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -181,23 +178,18 @@ public class PuntosVenta extends Activity {
 
 
                 db.deleteAllPublicity();
-                db.deleteAllProducts();
                 db.deleteAllSODVentanas();
-
-                db.deleteAllPresenseProduct();
                 db.deleteAllPresensePublicity();
 
                 new loadPoll().execute();
-
-
 
             }
         });
         listView.setAdapter(adapter);
 
-        pDialog = new ProgressDialog(this);
+        //pDialog = new ProgressDialog(this);
         // Showing progress dialog before making http request
-        pDialog.setMessage("Loading...");
+       // pDialog.setMessage("Loading...");
         pDialog.show();
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST , GlobalConstant.dominio + "/JsonRoadsDetail" ,params,
                 new Response.Listener<JSONObject>()
@@ -205,10 +197,7 @@ public class PuntosVenta extends Activity {
                     @Override
                     public void onResponse(JSONObject response)
                     {
-//                        pDialog = new ProgressDialog(MyActivity);
-//                        pDialog.setMessage("Cargando...");
-//                        pDialog.setCancelable(false);
-//                        pDialog.show();
+//
                         Log.d("DATAAAA", response.toString());
                         //adapter.notifyDataSetChanged();
                         try {
@@ -227,23 +216,9 @@ public class PuntosVenta extends Activity {
                                     auditadosPDV =  auditadosPDV + Integer.valueOf(response.getString("auditados"));
 
                                     for (int i = 0; i < ObjJson.length(); i++) {
-//                                    JSONObject obj = agentesObjJson.getJSONObject(i);
-//                                    // Storing each json item in variable
-//                                    String idAuditoria = obj.getString("id");
-//                                    String auditoria = obj.getString("auditoria");
-//                                    int status = obj.getInt("status");
+
                                         try {
 
-//                                            JSONObject obj = agentesObjJson.getJSONObject(i);
-//                                            contadorPDVS = contadorPDVS + Integer.valueOf(obj.getString("pdvs"));
-//                                            auditadosPDV =  auditadosPDV + Integer.valueOf(obj.getString("auditados"));
-//                                            Ruta ruta = new Ruta();
-//                                            ruta.setId(obj.getInt("id"));
-//                                            ruta.setRutaDia(obj.getString("fullname"));
-//                                            ruta.setPdvs(Integer.valueOf(obj.getString("pdvs")) );
-//                                            ruta.setPorcentajeAvance(Integer.valueOf(obj.getString("auditados")));
-//                                            // adding movie to movies array
-//                                            rutaList.add(ruta);
                                             JSONObject obj = ObjJson.getJSONObject(i);
                                             Pdv pdv = new Pdv();
                                             pdv.setId(Integer.valueOf(obj.getString("id")));
@@ -256,14 +231,7 @@ public class PuntosVenta extends Activity {
                                             pdv.setTypeBodega(obj.getString("tipo_bodega"));
                                             pdv.setStatus(obj.getInt("status"));
 
-//                                            int idpuntoventa=Integer.valueOf(obj.getString("id"));
-//                                            if(idpuntoventa==29){
-//                                                pdv.setStatus(1);
-//                                            } else if(idpuntoventa==34){
-//                                                pdv.setStatus(1);
-//                                            } else{
-//                                                pdv.setStatus(0);
-//                                            }
+//
                                             // adding movie to movies array
                                             pdvList.add(pdv);
                                         } catch (JSONException e) {
@@ -281,8 +249,9 @@ public class PuntosVenta extends Activity {
                                     porcentajeAvance1.setText( String.valueOf(big) + " % ");
                                 }
                             }
-                        } catch (JSONException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
+                            hidePDialog();
                         }
 
                         adapter.notifyDataSetChanged();
@@ -359,60 +328,7 @@ public class PuntosVenta extends Activity {
     }
 
 
-    private void readJsonProducts() {
-        int success;
-        try {
 
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("company_id", String.valueOf(GlobalConstant.company_id)));
-            params.add(new BasicNameValuePair("region", String.valueOf(region)));
-            params.add(new BasicNameValuePair("tipo_bodega", String.valueOf(typeBodega_id)));
-            JSONParser jsonParser = new JSONParser();
-            // getting product details by making HTTP request
-            JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/JsonListProductsAlicorp" ,"POST", params);
-            // check your log for json response
-            Log.d("Login attempt", json.toString());
-            // json success, tag que retorna el json
-            success = json.getInt("success");
-            if (success == 1) {
-                JSONArray ObjJson;
-                ObjJson = json.getJSONArray("products");
-
-                if(ObjJson.length() > 0) {
-                    for (int i = 0; i < ObjJson.length(); i++) {
-                        try {
-                            JSONObject obj = ObjJson.getJSONObject(i);
-                            Product product = new Product();
-                            product.setId(Integer.valueOf(obj.getString("id")));
-                            product.setName(obj.getString("fullname"));
-                            product.setCode(obj.getString("eam"));
-                            product.setStatus(0);
-                            product.setCategory_id(Integer.valueOf(obj.getString("category_id")));
-                            product.setCategory_name(obj.getString("categoria"));
-                            product.setImage(GlobalConstant.dominio + "/media/images/colgate/products/" + obj.getString("imagen"));
-                            product.setPrecio(obj.getString("precio"));
-                            //product.setCompany_id(Integer.valueOf(obj.getString("company_id")));
-                            product.setCompany_id(Integer.valueOf(GlobalConstant.company_id));
-                            db.createProduct(product);
-                            //pedido.setDescripcion(obj.getString("descripcion"));
-                            // adding movie to movies array
-                            // tipoPedidoList.add(pedido);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    //poblandoSpinnerTipoPedido();
-                    Log.d(LOG_TAG, String.valueOf(db.getAllProducts()));
-                }
-            }else{
-                Log.d(LOG_TAG, json.getString("message"));
-                // return json.getString("message");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     private boolean readJsonPublicity() {
         int success;

@@ -13,6 +13,7 @@ public class ConexionInternet {
     public ConexionInternet(Context mContext){
         this._context = mContext;
     }
+
     public boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager)  _context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();

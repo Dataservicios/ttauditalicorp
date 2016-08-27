@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import dataservicios.com.ttauditalicorp.Model.User;
 import dataservicios.com.ttauditalicorp.SQLite.DatabaseHelper;
+import dataservicios.com.ttauditalicorp.util.Connectivity;
 import dataservicios.com.ttauditalicorp.util.GlobalConstant;
 import dataservicios.com.ttauditalicorp.util.JSONParser;
 import dataservicios.com.ttauditalicorp.util.SessionManager;
@@ -36,6 +37,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private DatabaseHelper db;
     // Progress Dialog
     private ProgressDialog pDialog;
+    Activity  MyActivity = (Activity) this;
     // Session Manager Class
     SessionManager session;
     // JSON parser class
@@ -46,20 +48,26 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         ingresar = (Button) findViewById(R.id.btIngresar);
-//        btLlamar = (Button) findViewById(R.id.btLlamar);
-//        btUbicar = (Button) findViewById(R.id.btUbicar);
         usuario =   (EditText) findViewById(R.id.etUsuario);
         contrasena = (EditText) findViewById(R.id.etContrasena);
 
         contrasena.setText("123456");
-        //contrasena.setText("");
+
 
         ingresar.setOnClickListener(this);
-        //btLlamar.setOnClickListener(this);
-        //btUbicar.setOnClickListener(this);
-
         // Session Manager
         session = new SessionManager(getApplicationContext());
+
+
+        if(Connectivity.isConnected(MyActivity)) {
+            if (Connectivity.isConnectedFast(MyActivity)) {
+                Toast.makeText(MyActivity, "Conexion a internet rapida", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(MyActivity, "Conexion a internet lenta", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(MyActivity, "No hay conexión a internet", Toast.LENGTH_SHORT).show();
+        }
 
         db = new DatabaseHelper(getApplicationContext());
         if(db.getUserCount() > 0) {
@@ -74,23 +82,13 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         }
     }
 
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btIngresar:
-                //String nombre = usuario.getText().toString();
-//                if (usuario.getText().toString().equals("jaime") && contrasena.getText().toString().equals("jaime"))
-//                {
-//                    Intent intent = new Intent("com.dataservicios.redagenteglobalapp.LISTGENTE");
-//                    Bundle bolsa = new Bundle();
-//                    bolsa.putString("NOMBRE", nombre);
-//                    intent.putExtras(bolsa);
-//                    startActivity(intent);
-//                } else {
-//                    Toast toast = Toast.makeText(this , "La contraseña o usario es incorrecto", Toast.LENGTH_SHORT );
-//                    toast.show();
-//                }
-//
+
                 if (usuario.getText().toString().trim().equals("") )
                 {
                      Toast toast = Toast.makeText(this, "Ingrese un Usuario", Toast.LENGTH_SHORT);
@@ -101,28 +99,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     toast.show();
                     contrasena.requestFocus();
                 }else {
-
                             new AttemptLogin().execute();
-
 
                 }
                 break;
-//            case R.id.btLlamar:
-//                try {
-//                    Intent my_callIntent = new Intent(Intent.ACTION_CALL);
-//                    my_callIntent.setData(Uri.parse("tel:" + "948337893"));
-//                    //here the word 'tel' is important for making a call...
-//
-//                    startActivity(my_callIntent);
-//                } catch (ActivityNotFoundException e) {
-//                    Toast.makeText(getApplicationContext(), "Error in your phone call" + e.getMessage(), Toast.LENGTH_LONG).show();
-//                }
-//                break;
-//            case R.id.btUbicar:
-//                Intent intent = new Intent("dataservicios.com.ttauditalicorp.UBICACION");
-//                startActivity(intent);
-//                //finish();
-//                break;
+
         }
     }
 

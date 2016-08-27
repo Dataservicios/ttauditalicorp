@@ -44,6 +44,10 @@
     <string name="sw_si">SI</string>
     <string name="sw_no">NO</string>
 
+    <!-- -->
+    <string name="dialog_message_permission">Para poder iniciar la aplicación necesita establecer los permisos</string>
+    <string name="permission_access">Se ha otorgado el permiso</string>
+    <string name="ok">OK</string>
 
     <!-- Versiones-->
     <string name="version">Versión</string>
