@@ -23,7 +23,7 @@
         android:glEsVersion="0x00020000"
         android:required="true"/>
     <application
-        android:name="dataservicios.com.ttauditalicorp.app.AppController"
+        android:name=".app.AppController"
         android:allowBackup="true"
         android:icon="@drawable/ic_agente"
         android:label="@string/app_name"
@@ -273,7 +273,8 @@
         android:name="com.google.android.maps.v2.API_KEY"
         android:value="AIzaSyAnYybk5WcVCIxWXtVUvvoXvAum6vyJwsU"/>
 
-        <service android:name="dataservicios.com.ttauditalicorp.Services.UploadService" android:label="@string/app_name">
-        </service>
+        <service android:name="dataservicios.com.ttauditalicorp.Services.UploadService" android:label="@string/app_name"></service>
+        <service android:name=".Services.UpdateServices" android:label="ALicor Upload"></service>
+
     </application>
 </manifest>

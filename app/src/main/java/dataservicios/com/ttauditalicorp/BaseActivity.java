@@ -35,6 +35,7 @@ import java.util.HashMap;
  * Created by usuario on 26/11/2014.
  */
 public class BaseActivity extends Activity {
+    private static final String LOG_TAG = BaseActivity.class.getSimpleName();
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -66,40 +67,21 @@ public class BaseActivity extends Activity {
         session = new SessionManager(getApplicationContext());
 
         HashMap<String, String> user = session.getUserDetails();
-        // name
         name_user = user.get(SessionManager.KEY_NAME);
-        // email
         email_user = user.get(SessionManager.KEY_EMAIL);
-        // id
         id_user = user.get(SessionManager.KEY_ID_USER);
-
         mTitle = mDrawerTitle = getTitle();
-
         // load slide menu items
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
-
-        // nav drawer icons from resources
-        //navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
         navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
         navDrawerItems = new ArrayList<NavDrawerItem>();
-        // adding nav drawer items to array
-        // Home
+
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId( 0, -1)));
-        // Find People
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId( 1 , -1)));
-        // Photos
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId( 2 , -1)));
-        // Photos
-        //navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(3, -1)));
-        // Communities, Will add a counter here
-        //navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
-        // Pages
-        //navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-        // What's hot, We  will add a counter here
-        //navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
-        // Recycle the typed array
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId( 2 , -1), true , "22"));
+
         navMenuIcons.recycle();
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
         // setting the nav drawer list adapter
@@ -121,7 +103,15 @@ public class BaseActivity extends Activity {
             }
 
             public void onDrawerOpened(View drawerView) {
+
+
                 getActionBar().setTitle(mDrawerTitle);
+                Log.i(LOG_TAG, String.valueOf(navDrawerItems.get(2).getCount() )) ;
+                navDrawerItems.get(2).setCount("120");
+                adapter.notifyDataSetChanged();
+                //notifyDataSetChanged();
+
+
                 // calling onPrepareOptionsMenu() to hide action bar icons
                 invalidateOptionsMenu();
             }
@@ -137,8 +127,8 @@ public class BaseActivity extends Activity {
     /**
      * Slide menu item click listener
      * */
-    private class SlideMenuClickListener implements
-            ListView.OnItemClickListener {
+    private class SlideMenuClickListener implements  ListView.OnItemClickListener
+    {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
@@ -218,6 +208,15 @@ public class BaseActivity extends Activity {
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
         //menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+
+        Log.i(LOG_TAG,"onMenuOpened") ;
+        return super.onMenuOpened(featureId, menu);
+
+
     }
 
     /**
