@@ -15,7 +15,7 @@ public class Media {
     private int company_id;
     private int type ;
     private String file ;
-    private Date created_at;
+    private String created_at;
 
     public int getId() {
         return id;
@@ -81,11 +81,11 @@ public class Media {
         this.file = file;
     }
 
-    public Date getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 

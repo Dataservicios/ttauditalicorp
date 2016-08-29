@@ -39,10 +39,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_PRESENCE_PUBLICITY = "presence_publicity";
     private static final String TABLE_AUDITS = "audits";
     private static final String TABLE_SOD_VENTANAS = "sodventanas";
+    private static final String TABLE_MEDIAS = "medias";
 
     //Name columns common
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
+    private static final String KEY_STORE = "store_id";
+    private static final String KEY_POLL = "poll_id";
+    private static final String KEY_DATE_CREATED= "created_at";
+    private static final String KEY_DATE_UPDATE= "update_at";
 
     //Name columns user
     private static final String KEY_EMAIL = "email";
@@ -87,7 +92,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Name column Audit
     private static final String KEY_SCORE = "score";
 
-    //Nname
+    //Name column Table medias
+    private  static final String KEY_TIPO = "tipo";
+    private  static final String KEY_NAME_FILE = "archivo";
 
 
 
@@ -160,6 +167,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_NAME + " TEXT ,"
             + KEY_IMAGEN + " TEXT, "
             + KEY_STATUS+ " INTEGER )";
+    private static final String CREATE_TABLE_MEDIAS  = "CREATE TABLE "
+            + TABLE_MEDIAS + "("
+            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + KEY_STORE + " INTEGER ,"
+            + KEY_POLL + " INTEGER, "
+            + KEY_PUBLICITY_ID + " INTEGER, "
+            + KEY_PRODUCT_ID + " INTEGER, "
+            + KEY_COMPANY_ID + " INTEGER, "
+            + KEY_NAME_FILE + " TEXT, "
+            + KEY_DATE_CREATED + " TEXT )";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -177,7 +194,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_AUDITS);
         db.execSQL(CREATE_TABLE_PUBLICITY);
         db.execSQL(CREATE_TABLE_SOD_VENTANAS);
-
+        db.execSQL(CREATE_TABLE_MEDIAS);
     }
 
 
@@ -193,6 +210,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_AUDITS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PUBLICITY);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOD_VENTANAS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEDIAS);
 
         // create new tables
         onCreate(db);

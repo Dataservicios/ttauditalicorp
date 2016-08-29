@@ -46,9 +46,4 @@
         android:textSize="@dimen/rating" />
 
 
-
-
-
-
-
 </RelativeLayout>
