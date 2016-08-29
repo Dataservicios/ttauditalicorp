@@ -132,6 +132,7 @@ public class  UploadService extends IntentService {
             } else {
                 Toast.makeText(context,"Error no se pudo guardar la imágen, consulta su backup de imagenes",Toast.LENGTH_SHORT).show();
                 updateNotification();
+
             }
         }
     }
