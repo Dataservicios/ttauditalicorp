@@ -48,7 +48,7 @@ public class AuditAlicorp {
         int publicity_id = media.getPublicity_id();
         int store_id= media.getStore_id();
         int type = media.getType();
-        Date created_at = media.getCreated_at();
+        String created_at = media.getCreated_at();
 
         long totalSize = 0;
 

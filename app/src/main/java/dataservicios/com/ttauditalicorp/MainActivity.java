@@ -19,7 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import dataservicios.com.ttauditalicorp.Model.Audit;
+import dataservicios.com.ttauditalicorp.Model.Media;
 import dataservicios.com.ttauditalicorp.Model.Publicity;
+import dataservicios.com.ttauditalicorp.Repositories.MediaRepo;
 import dataservicios.com.ttauditalicorp.SQLite.DatabaseHelper;
 import dataservicios.com.ttauditalicorp.util.ConexionInternet;
 import dataservicios.com.ttauditalicorp.util.GlobalConstant;
@@ -65,6 +67,14 @@ public class MainActivity extends Activity {
         tv_Version = (TextView) findViewById(R.id.tvVersion);
 
         db = new DatabaseHelper(getApplicationContext());
+        /*Media media = new Media();
+        media.setCompany_id(GlobalConstant.company_id);
+        media.setPublicity_id(408);
+        media.setStore_id(108);
+        MediaRepo mediaRepo = new MediaRepo(this);
+        long mediaId = mediaRepo.insert(media);
+        Media ObjMedia = mediaRepo.getMedia(mediaId);
+        Log.i(LOG_TAG,String.valueOf(ObjMedia.getCreated_at()));*/
 
         PackageInfo pckInfo ;
         try {
